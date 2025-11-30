@@ -2,7 +2,7 @@ package com.mycompany.sudoku;
 
 public class ValidatorFactory {
 
-    public static Validator getvalidator(int mode, Board board) {
+    public static Validator getValidator(int mode, Board board) {
         switch (mode) {
         case 0:
             return new SequentialValidator(board);
