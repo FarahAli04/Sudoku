@@ -79,5 +79,50 @@ public String formatBoxError(int box, int duplicateValue, List<Integer> position
    return "Box " + (box + 1) + ", #" + duplicateValue + ", " + position.toString();
 }
 
+public List<String> ValidateSingleRow(int rowIndex){
+    List<String> rowErrors = new ArrayList<>();
+    int[] row = board.getrow(rowIndex);
+    DuplicatesFinder finder = new DuplicatesFinder();
+    DuplicateResult result = finder.findDuplicates(row);
+    if (result.isHasDuplicates()) {
+        for (Map.Entry<Integer, List<Integer>> entry : result.getDuplicates().entrySet()) {
+         int duplicatevalue = entry.getKey();
+         List<Integer> position = entry.getValue();
+          rowErrors.add(formatRowError(rowIndex, duplicatevalue, position));
+        }
+    }
+    return rowErrors;
+}
+
+public List<String> ValidateSingleColumn(int columnIndex){
+    List<String> columnErrors = new ArrayList<>();
+    int[] column = board.getcolumn(columnIndex);
+    DuplicatesFinder finder = new DuplicatesFinder();
+    DuplicateResult result = finder.findDuplicates(column);
+    if (result.isHasDuplicates()) {
+        for (Map.Entry<Integer, List<Integer>> entry : result.getDuplicates().entrySet()) {
+         int duplicatevalue = entry.getKey();
+         List<Integer> position = entry.getValue();
+          columnErrors.add(formatColumnError(columnIndex, duplicatevalue, position));
+        }
+    }
+    return columnErrors;
+
+  }
+
+  public List<String> ValidateSingleBox(int boxIndex){
+    List<String> boxErrors = new ArrayList<>();
+    int[] box = board.getbox(boxIndex);
+    DuplicatesFinder finder = new DuplicatesFinder();
+    DuplicateResult result = finder.findDuplicates(box);
+    if (result.isHasDuplicates()) {
+        for (Map.Entry<Integer, List<Integer>> entry : result.getDuplicates().entrySet()) {
+         int duplicatevalue = entry.getKey();
+         List<Integer> position = entry.getValue();
+          boxErrors.add(formatBoxError(boxIndex, duplicatevalue, position));
+        }
+    }
+    return boxErrors;
+  }
 }
 
