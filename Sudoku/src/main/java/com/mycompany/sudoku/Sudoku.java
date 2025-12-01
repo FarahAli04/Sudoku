@@ -11,35 +11,7 @@ import java.io.IOException;
  * @author Farah
  */
 public class Sudoku {
-
     public static void main(String[] args) {
-             try {
-            String filePath = "E:\\java\\Sudoku\\src\\main\\java\\com\\mycompany\\sudoku\\Valid.csv";  
-
-
-            Board board = new Board(filePath);
-            Validator validator = new SequentialValidator(board);
-
-            boolean valid = validator.isValid();
-
-            if (valid) {
-                System.out.println("VALID");
-            } else {
-                System.out.println("INVALID");
-                System.out.println("----------------------------------");
-
-                for (String error : validator.getValidationErrors()) {
-                    System.out.println(error);
-                }
-            }
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
-
-    
- /* 
         if (args.length != 2) {
             System.out.println(
                     "Please provide the input file path and validation mode (0 :sequential, 3: 3 threads, 27: 27 threads).");
@@ -73,7 +45,28 @@ public class Sudoku {
             System.out.println("Error reading the Sudoku board from file: " + e.getMessage());
             System.exit(1);
             e.printStackTrace();
-        }  
-*/
+        }
+        /*
+        scanner scan = new scanner (System.in);
+        System.out.println("Enter the file path of the Sudoku board:");
+        String filePath = scan.nextLine();
+        Board board = new Board (filePath);
+        System.out.println("Enter validation mode (0 :sequential, 3: 3 threads, 27: 27 threads):");
+        int mode = scan.nextInt();
+        Validator validator = ValidatorFactory.getValidator(mode, board);
+        boolean isValid = validator.isValid();
+        if (isValid) {
+            System.out.println("Valid.");
+        } else {
+            System.out.println("Invalid. Errors:");
+            for (String error : validator.getValidationErrors()) {
+                System.out.println(error);
+            }
+        }
+        scan.close();
+        
+        
+        */  
+
     }
 }
